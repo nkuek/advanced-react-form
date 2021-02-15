@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './components/Home';
 import NavigationWithRouter from './components/Navigation';
 import sample from './data/sample.json';
+import spi from './data/spi.json';
 import SampleSurvey from './components/SampleSurvey';
 import SensoryPreferences from './components/SensoryPreferences';
 import { Route, Switch } from 'react-router-dom';
@@ -19,7 +20,7 @@ function App() {
                     <SampleSurvey data={sample} />
                 </Route>
                 <Route path="/sensory-preferences">
-                    <SensoryPreferences />
+                    <SensoryPreferences data={spi} />
                 </Route>
             </Switch>
         </div>
