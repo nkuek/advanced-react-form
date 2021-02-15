@@ -1,1 +1,19 @@
 /* TODO Add site wide styles */
+.form {
+    padding: 10px;
+    margin: 10px;
+}
+
+.header {
+    padding: 10px;
+    margin: 10px;
+}
+
+.subheader {
+    color: grey;
+    font-size: 1em
+}
+
+.separator {
+    border: 1px solid rgb(211, 209, 209)
+}
