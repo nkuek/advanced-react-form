@@ -9,13 +9,13 @@ const SampleSurvey = ({ data }) => {
     const [firstName, setFirstName] = useState('');
     const [email, setEmail] = useState('');
     const [addtionalFeedback, setAdditionalFeedback] = useState('');
+    const [errors, setErrors] = useState([]);
     useEffect(() => {
         console.log('reason', reason);
         console.log('plan', plan);
-        console.log('whyOrWhyNot', whyOrWhyNot);
-        console.log('firstName', firstName);
-        console.log('email', email);
-        console.log('additionalFeedback', addtionalFeedback);
+        const errors = [];
+        if (!reason || !plan)
+            errors.push('Please fill out all required fields');
     }, [reason, plan, whyOrWhyNot, firstName, email, addtionalFeedback]);
     return (
         <div>
@@ -24,31 +24,35 @@ const SampleSurvey = ({ data }) => {
                 {data.questions.map((question, idx) => {
                     if (question.type === 'mcq') {
                         return (
-                            <div>
-                                <Form.Label htmlFor={idx} key={idx}>
+                            <div className="mb-3" key={idx}>
+                                <Form.Label as="legend" column sm={2}>
                                     {question.stem}
-                                    {question.options.map((option) => (
+                                </Form.Label>
+                                {question.options.map((option, i) => (
+                                    <Form.Col sm={10}>
                                         <Form.Check
-                                            key={option.value}
+                                            key={i}
                                             label={option.text}
-                                            type="radio"
                                             id={idx}
+                                            type="radio"
                                             value={option.value}
-                                            name={question}
+                                            name={idx}
                                             onChange={(e) =>
                                                 question.stem.includes('reason')
                                                     ? setReason(e.target.value)
                                                     : setPlan(e.target.value)
                                             }
                                         />
-                                    ))}
-                                </Form.Label>
+                                    </Form.Col>
+                                ))}
                             </div>
                         );
                     } else if (question.type === 'cr') {
                         return (
-                            <Form.Group key={idx}>
-                                <Form.Label>{question.stem}</Form.Label>
+                            <div className="mb-3" key={idx}>
+                                <Form.Label as="legend" column sm={2}>
+                                    {question.stem}
+                                </Form.Label>
                                 <Form.Control
                                     onChange={(e) =>
                                         question.stem.includes('Why')
@@ -74,7 +78,7 @@ const SampleSurvey = ({ data }) => {
                                     rows={question.lines}
                                     required={!question.optional}
                                 ></Form.Control>
-                            </Form.Group>
+                            </div>
                         );
                     } else {
                         return (
