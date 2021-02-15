@@ -13,7 +13,7 @@ const SampleSurvey = ({ data }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    // Creation of form submission event handler
+    // Creation of form submission event listener
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -30,6 +30,8 @@ const SampleSurvey = ({ data }) => {
 
         // Set isSubmitted state to true if there are no errors
         if (errors.length === 0) setIsSubmitted(true);
+
+        // Could make fetch call with the form data to backend here
     };
 
     // Renders thank you message instead of the form if it is submitted without errors
