@@ -25,7 +25,7 @@ const SampleSurvey = ({ data }) => {
                     if (question.type === 'mcq') {
                         return (
                             <div className="mb-3" key={idx}>
-                                <Form.Label as="legend" column sm={2}>
+                                <Form.Label as="legend">
                                     {question.stem}
                                 </Form.Label>
                                 {question.options.map((option, i) => (
