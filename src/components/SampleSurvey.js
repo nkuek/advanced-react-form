@@ -1,4 +1,4 @@
-import Form from 'react-bootstrap/Form';
+import Form, { Col } from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect, Fragment } from 'react';
 
@@ -29,28 +29,26 @@ const SampleSurvey = ({ data }) => {
                                     {question.stem}
                                 </Form.Label>
                                 {question.options.map((option, i) => (
-                                    <Form.Col sm={10}>
-                                        <Form.Check
-                                            key={i}
-                                            label={option.text}
-                                            id={idx}
-                                            type="radio"
-                                            value={option.value}
-                                            name={idx}
-                                            onChange={(e) =>
-                                                question.stem.includes('reason')
-                                                    ? setReason(e.target.value)
-                                                    : setPlan(e.target.value)
-                                            }
-                                        />
-                                    </Form.Col>
+                                    <Form.Check
+                                        key={i}
+                                        label={option.text}
+                                        id={idx}
+                                        type="radio"
+                                        value={option.value}
+                                        name={idx}
+                                        onChange={(e) =>
+                                            question.stem.includes('reason')
+                                                ? setReason(e.target.value)
+                                                : setPlan(e.target.value)
+                                        }
+                                    />
                                 ))}
                             </div>
                         );
                     } else if (question.type === 'cr') {
                         return (
                             <div className="mb-3" key={idx}>
-                                <Form.Label as="legend" column sm={2}>
+                                <Form.Label as="legend">
                                     {question.stem}
                                 </Form.Label>
                                 <Form.Control
